@@ -16,8 +16,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <errorPronePatch></errorPronePatch>
-    <errorPronePatchLocation></errorPronePatchLocation>
     <!-- required for error_prone -->
     <javac.version>9+181-r4173-1</javac.version>
     <errorProneMissingOverrideLevel>ERROR</errorProneMissingOverrideLevel>
@@ -25,34 +23,8 @@
     <version.asm>9.1</version.asm>
     <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
     <version.error_prone_core>2.6.0</version.error_prone_core>
-    <version.guava-beta-checker>1.0</version.guava-beta-checker>
     <version.nullaway>0.9.1</version.nullaway>
-    <!-- -->
-    <immutables.value.version>2.8.8</immutables.value.version>
-    <auto-value.version>1.8</auto-value.version>
-    <quickcheckng.version>1.1.4</quickcheckng.version>
-    <adt4j.version>3.2</adt4j.version>
   </properties>
-
-  <profiles>
-    <profile>
-      <id>patch</id>
-      <properties>
-        <errorPronePatch>-XepPatchChecks:MissingOverride,DefaultCharset,DeadException,CheckMixedCaseNonNaturalTranslationKeys,OsgiMultipleReferenceMustUseListCheck,ParseUntrustedEnumInputCheck, ParseUntrustedEnumArgumentCheck, RestletFormCheck</errorPronePatch>
-        <errorPronePatchLocation>-XepPatchLocation:${project.basedir}</errorPronePatchLocation>
-      </properties>
-    </profile>
-
-  </profiles>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -66,10 +38,6 @@
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -116,41 +84,6 @@
           <showWarnings>${showWarnings}</showWarnings>
           <annotationProcessorPaths>
             <path>
-              <groupId>com.google.guava</groupId>
-              <artifactId>guava-beta-checker</artifactId>
-              <version>${version.guava-beta-checker}</version>
-            </path>
-            <!-- <path>
-              <groupId>com.smxemail</groupId>
-              <artifactId>com.smxemail.errorprone.checks</artifactId>
-              <version>${com.smxemail.errorprone.checks.version}</version>
-            </path>
-            <path>
-              <groupId>com.smxemail</groupId>
-              <artifactId>com.smxemail.datatype.annotations</artifactId>
-              <version>${com.smxemail.datatype.annotations.version}</version>
-            </path> -->
-            <path>
-              <groupId>org.immutables</groupId>
-              <artifactId>value</artifactId>
-              <version>${immutables.value.version}</version>
-            </path>
-            <path>
-              <groupId>com.github.sviperll</groupId>
-              <artifactId>adt4j</artifactId>
-              <version>${adt4j.version}</version>
-            </path>
-            <path>
-              <groupId>com.google.auto.value</groupId>
-              <artifactId>auto-value</artifactId>
-              <version>${auto-value.version}</version>
-            </path>
-            <path>
-              <groupId>com.theoryinpractise</groupId>
-              <artifactId>quickcheckng</artifactId>
-              <version>${quickcheckng.version}</version>
-            </path>
-            <path>
               <groupId>com.uber.nullaway</groupId>
               <artifactId>nullaway</artifactId>
               <version>${version.nullaway}</version>
@@ -160,7 +93,6 @@
               <artifactId>error_prone_core</artifactId>
               <version>${version.error_prone_core}</version>
             </path>
-
           </annotationProcessorPaths>
           <compilerArgs>
             <arg>-Xmaxerrs</arg>
@@ -185,7 +117,7 @@
             <arg>-Xep:DateFormatConstant:ERROR</arg>
             <arg>-Xep:StaticQualifiedUsingExpression:ERROR</arg>
             <arg>-Xep:RedundantThrows:ERROR</arg>
-            <arg>-Xep:BetaApi:WARN</arg>
+            <!-- <arg>-Xep:BetaApi:WARN</arg> -->
             <arg>${errorPronePatch}</arg>
             <arg>${errorPronePatchLocation}</arg>
 
@@ -203,7 +135,7 @@
           <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-compiler-javac-errorprone</artifactId>
-            <version>2.8.6</version>
+            <version>2.8.8</version>
           </dependency>
           <!-- override plexus-compiler-javac-errorprone's dependency on
              Error Prone with the latest version -->
