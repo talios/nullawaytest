@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.talios.nullawaytest</groupId>
+  <artifactId>nullawaytest</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+
+  <name>nullawaytest</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <errorPronePatch></errorPronePatch>
+    <errorPronePatchLocation></errorPronePatchLocation>
+    <!-- required for error_prone -->
+    <javac.version>9+181-r4173-1</javac.version>
+    <errorProneMissingOverrideLevel>ERROR</errorProneMissingOverrideLevel>
+    <errorProneNullAwayLevel>WARN</errorProneNullAwayLevel>
+    <version.asm>9.1</version.asm>
+    <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+    <version.error_prone_core>2.6.0</version.error_prone_core>
+    <version.guava-beta-checker>1.0</version.guava-beta-checker>
+    <version.nullaway>0.9.1</version.nullaway>
+    <!-- -->
+    <immutables.value.version>2.8.8</immutables.value.version>
+    <auto-value.version>1.8</auto-value.version>
+    <quickcheckng.version>1.1.4</quickcheckng.version>
+    <adt4j.version>3.2</adt4j.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>patch</id>
+      <properties>
+        <errorPronePatch>-XepPatchChecks:MissingOverride,DefaultCharset,DeadException,CheckMixedCaseNonNaturalTranslationKeys,OsgiMultipleReferenceMustUseListCheck,ParseUntrustedEnumInputCheck, ParseUntrustedEnumArgumentCheck, RestletFormCheck</errorPronePatch>
+        <errorPronePatchLocation>-XepPatchLocation:${project.basedir}</errorPronePatchLocation>
+      </properties>
+    </profile>
+
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.maven-compiler-plugin}</version>
+        <!-- use error prone: http://errorprone.info/docs/installation -->
+        <configuration>
+          <compilerId>javac-with-errorprone</compilerId>
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
+          <compilerVersion>${compilerVersion}</compilerVersion>
+          <source>${compilerVersion}</source>
+          <target>${compilerVersion}</target>
+          <release>${release}</release>
+          <optimize>true</optimize>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
+          <showWarnings>${showWarnings}</showWarnings>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>com.google.guava</groupId>
+              <artifactId>guava-beta-checker</artifactId>
+              <version>${version.guava-beta-checker}</version>
+            </path>
+            <!-- <path>
+              <groupId>com.smxemail</groupId>
+              <artifactId>com.smxemail.errorprone.checks</artifactId>
+              <version>${com.smxemail.errorprone.checks.version}</version>
+            </path>
+            <path>
+              <groupId>com.smxemail</groupId>
+              <artifactId>com.smxemail.datatype.annotations</artifactId>
+              <version>${com.smxemail.datatype.annotations.version}</version>
+            </path> -->
+            <path>
+              <groupId>org.immutables</groupId>
+              <artifactId>value</artifactId>
+              <version>${immutables.value.version}</version>
+            </path>
+            <path>
+              <groupId>com.github.sviperll</groupId>
+              <artifactId>adt4j</artifactId>
+              <version>${adt4j.version}</version>
+            </path>
+            <path>
+              <groupId>com.google.auto.value</groupId>
+              <artifactId>auto-value</artifactId>
+              <version>${auto-value.version}</version>
+            </path>
+            <path>
+              <groupId>com.theoryinpractise</groupId>
+              <artifactId>quickcheckng</artifactId>
+              <version>${quickcheckng.version}</version>
+            </path>
+            <path>
+              <groupId>com.uber.nullaway</groupId>
+              <artifactId>nullaway</artifactId>
+              <version>${version.nullaway}</version>
+            </path>
+            <path>
+              <groupId>com.google.errorprone</groupId>
+              <artifactId>error_prone_core</artifactId>
+              <version>${version.error_prone_core}</version>
+            </path>
+
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <arg>-Xmaxerrs</arg>
+            <arg>1000000</arg>
+            <arg>-Xlint</arg>
+            <arg>-XepExcludedPaths:.*/target/generated-.*sources/.*</arg>
+            <arg>-XepOpt:NullAway:ExcludedFieldAnnotations=org.osgi.service.component.annotations.Reference,com.google.inject.Inject,org.mockito.InjectMocks,org.mockito.Mock</arg>
+            <arg>-XepOpt:NullAway:CustomInitializerAnnotations=org.osgi.service.component.annotations.Activate,org.testng.annotations.BeforeClass,org.testng.annotations.BeforeTest,org.testng.annotations.BeforeMethod</arg>
+            <arg>-Xep:NullAway:${errorProneNullAwayLevel}</arg>
+            <arg>-Xep:OptionalEquality:WARN</arg>
+            <arg>-Xep:SelfComparison:ERROR</arg>
+            <arg>-Xep:SelfEquals:ERROR</arg>
+            <arg>-Xep:StringEquality:ERROR</arg>
+            <arg>-Xep:EqualsHashCode:ERROR</arg>
+            <arg>-Xep:EqualsIncompatibleType:ERROR</arg>
+            <arg>-Xep:NonOverridingEquals:ERROR</arg>
+            <arg>-Xep:NullableVoid:ERROR</arg>
+            <arg>-Xep:NullablePrimitive:ERROR</arg>
+            <arg>-Xep:NonOverridingEquals:ERROR</arg>
+            <arg>-Xep:NullableConstructor:ERROR</arg>
+            <arg>-Xep:MissingOverride:${errorProneMissingOverrideLevel}</arg>
+            <arg>-Xep:DateFormatConstant:ERROR</arg>
+            <arg>-Xep:StaticQualifiedUsingExpression:ERROR</arg>
+            <arg>-Xep:RedundantThrows:ERROR</arg>
+            <arg>-Xep:BetaApi:WARN</arg>
+            <arg>${errorPronePatch}</arg>
+            <arg>${errorPronePatchLocation}</arg>
+
+            <compilerArg>-Xep:NullAway:${errorProneNullAwayLevel}</compilerArg>
+            <compilerArg>-XepOpt:NullAway:AnnotatedPackages=com.smxemail,smx3</compilerArg>
+
+          </compilerArgs>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${version.asm}</version>            <!-- Use newer version of ASM -->
+          </dependency>
+          <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-compiler-javac-errorprone</artifactId>
+            <version>2.8.6</version>
+          </dependency>
+          <!-- override plexus-compiler-javac-errorprone's dependency on
+             Error Prone with the latest version -->
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+</project>
