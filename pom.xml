@@ -124,29 +124,29 @@
             <arg>1000000</arg>
             <arg>-Xlint</arg>
 
-            <!-- <arg>-XepOpt:NullAway:AnnotatedPackages=com.smxemail,smx3</arg> -->
+            <arg>-XepOpt:NullAway:AnnotatedPackages=com.smxemail,smx3</arg>
 
-            <!-- <arg>-XepExcludedPaths:.*/target/generated-.*sources/.*</arg> -->
-            <!-- <arg>-XepOpt:NullAway:ExcludedFieldAnnotations=org.osgi.service.component.annotations.Reference,com.google.inject.Inject,org.mockito.InjectMocks,org.mockito.Mock</arg> -->
-            <!-- <arg>-XepOpt:NullAway:CustomInitializerAnnotations=org.osgi.service.component.annotations.Activate,org.testng.annotations.BeforeClass,org.testng.annotations.BeforeTest,org.testng.annotations.BeforeMethod</arg> -->
-            <!-- <arg>-Xep:NullAway:${errorProneNullAwayLevel}</arg> -->
-            <!-- <arg>XepDisableWarningsInGeneratedCode</arg> -->
-            <!-- <arg>-Xep:OptionalEquality:WARN</arg> -->
-            <!-- <arg>-Xep:SelfComparison:ERROR</arg> -->
-            <!-- <arg>-Xep:SelfEquals:ERROR</arg> -->
-            <!-- <arg>-Xep:StringEquality:ERROR</arg> -->
-            <!-- <arg>-Xep:EqualsHashCode:ERROR</arg> -->
-            <!-- <arg>-Xep:EqualsIncompatibleType:ERROR</arg> -->
-            <!-- <arg>-Xep:NonOverridingEquals:ERROR</arg> -->
-            <!-- <arg>-Xep:NullableVoid:ERROR</arg> -->
-            <!-- <arg>-Xep:NullablePrimitive:ERROR</arg> -->
-            <!-- <arg>-Xep:NonOverridingEquals:ERROR</arg> -->
-            <!-- <arg>-Xep:NullableConstructor:ERROR</arg> -->
-            <!-- <arg>-Xep:MissingOverride:${errorProneMissingOverrideLevel}</arg> -->
-            <!-- <arg>-Xep:DateFormatConstant:ERROR</arg> -->
-            <!-- <arg>-Xep:StaticQualifiedUsingExpression:ERROR</arg> -->
-            <!-- <arg>-Xep:RedundantThrows:ERROR</arg> -->
-            <!-- <arg>-Xep:BetaApi:WARN</arg> -->
+            <arg>-XepExcludedPaths:.*/target/generated-.*sources/.*</arg>
+            <arg>-XepOpt:NullAway:ExcludedFieldAnnotations=org.osgi.service.component.annotations.Reference,com.google.inject.Inject,org.mockito.InjectMocks,org.mockito.Mock</arg>
+            <arg>-XepOpt:NullAway:CustomInitializerAnnotations=org.osgi.service.component.annotations.Activate,org.testng.annotations.BeforeClass,org.testng.annotations.BeforeTest,org.testng.annotations.BeforeMethod</arg>
+            <arg>-Xep:NullAway:${errorProneNullAwayLevel}</arg>
+            <arg>XepDisableWarningsInGeneratedCode</arg>
+            <arg>-Xep:OptionalEquality:WARN</arg>
+            <arg>-Xep:SelfComparison:ERROR</arg>
+            <arg>-Xep:SelfEquals:ERROR</arg>
+            <arg>-Xep:StringEquality:ERROR</arg>
+            <arg>-Xep:EqualsHashCode:ERROR</arg>
+            <arg>-Xep:EqualsIncompatibleType:ERROR</arg>
+            <arg>-Xep:NonOverridingEquals:ERROR</arg>
+            <arg>-Xep:NullableVoid:ERROR</arg>
+            <arg>-Xep:NullablePrimitive:ERROR</arg>
+            <arg>-Xep:NonOverridingEquals:ERROR</arg>
+            <arg>-Xep:NullableConstructor:ERROR</arg>
+            <arg>-Xep:MissingOverride:${errorProneMissingOverrideLevel}</arg>
+            <arg>-Xep:DateFormatConstant:ERROR</arg>
+            <arg>-Xep:StaticQualifiedUsingExpression:ERROR</arg>
+            <arg>-Xep:RedundantThrows:ERROR</arg>
+            <arg>-Xep:BetaApi:WARN</arg>
 
           </compilerArgs>
         </configuration>
