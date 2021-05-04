@@ -19,7 +19,6 @@
     <!-- required for error_prone -->
     <javac.version>9+181-r4173-1</javac.version>
     <errorProneMissingOverrideLevel>ERROR</errorProneMissingOverrideLevel>
-    <errorProneNullAwayLevel>WARN</errorProneNullAwayLevel>
     <version.asm>9.1</version.asm>
     <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
     <version.error_prone_core>2.6.0</version.error_prone_core>
@@ -117,37 +116,7 @@
             </path>
           </annotationProcessorPaths>
           <compilerArgs>
-            <arg>-XDcompilePolicy=simple</arg>
-            <arg>-Xplugin:ErrorProne</arg>
-
-            <arg>-Xmaxerrs</arg>
-            <arg>1000000</arg>
-            <arg>-Xlint</arg>
-
-            <arg>-XepOpt:NullAway:AnnotatedPackages=com.smxemail,smx3</arg>
-
-            <arg>-XepExcludedPaths:.*/target/generated-.*sources/.*</arg>
-            <arg>-XepOpt:NullAway:ExcludedFieldAnnotations=org.osgi.service.component.annotations.Reference,com.google.inject.Inject,org.mockito.InjectMocks,org.mockito.Mock</arg>
-            <arg>-XepOpt:NullAway:CustomInitializerAnnotations=org.osgi.service.component.annotations.Activate,org.testng.annotations.BeforeClass,org.testng.annotations.BeforeTest,org.testng.annotations.BeforeMethod</arg>
-            <arg>-Xep:NullAway:${errorProneNullAwayLevel}</arg>
-            <arg>XepDisableWarningsInGeneratedCode</arg>
-            <arg>-Xep:OptionalEquality:WARN</arg>
-            <arg>-Xep:SelfComparison:ERROR</arg>
-            <arg>-Xep:SelfEquals:ERROR</arg>
-            <arg>-Xep:StringEquality:ERROR</arg>
-            <arg>-Xep:EqualsHashCode:ERROR</arg>
-            <arg>-Xep:EqualsIncompatibleType:ERROR</arg>
-            <arg>-Xep:NonOverridingEquals:ERROR</arg>
-            <arg>-Xep:NullableVoid:ERROR</arg>
-            <arg>-Xep:NullablePrimitive:ERROR</arg>
-            <arg>-Xep:NonOverridingEquals:ERROR</arg>
-            <arg>-Xep:NullableConstructor:ERROR</arg>
-            <arg>-Xep:MissingOverride:${errorProneMissingOverrideLevel}</arg>
-            <arg>-Xep:DateFormatConstant:ERROR</arg>
-            <arg>-Xep:StaticQualifiedUsingExpression:ERROR</arg>
-            <arg>-Xep:RedundantThrows:ERROR</arg>
-            <arg>-Xep:BetaApi:WARN</arg>
-
+            <arg>-XDcompilePolicy=simple -Xplugin:ErrorProne -Xmaxerrs 1000000 -Xlint -XepOpt:NullAway:AnnotatedPackages=com.smxemail,smx3 -XepExcludedPaths:.*/target/generated-.*sources/.* -XepOpt:NullAway:ExcludedFieldAnnotations=org.osgi.service.component.annotations.Reference,com.google.inject.Inject,org.mockito.InjectMocks,org.mockito.Mock -XepOpt:NullAway:CustomInitializerAnnotations=org.osgi.service.component.annotations.Activate,org.testng.annotations.BeforeClass,org.testng.annotations.BeforeTest,org.testng.annotations.BeforeMethod -Xep:NullAway:ERROR -XepDisableWarningsInGeneratedCode -Xep:OptionalEquality:WARN -Xep:SelfComparison:ERROR -Xep:SelfEquals:ERROR -Xep:StringEquality:ERROR -Xep:EqualsHashCode:ERROR -Xep:EqualsIncompatibleType:ERROR -Xep:NonOverridingEquals:ERROR -Xep:NullableVoid:ERROR -Xep:NullablePrimitive:ERROR -Xep:NonOverridingEquals:ERROR -Xep:NullableConstructor:ERROR -Xep:MissingOverride:${errorProneMissingOverrideLevel} -Xep:DateFormatConstant:ERROR -Xep:StaticQualifiedUsingExpression:ERROR -Xep:RedundantThrows:ERROR -Xep:BetaApi:WARN</arg>
           </compilerArgs>
         </configuration>
         <dependencies>
