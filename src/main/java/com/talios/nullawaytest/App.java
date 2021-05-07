@@ -6,6 +6,7 @@ package com.talios.nullawaytest;
  */
 public class App {
   public static void main(String[] args) {
-    System.out.println("Hello World!");
+    String itsanull = null;
+    System.out.println(itsanull.trim() + 5);
   }
 }
